@@ -1,23 +1,42 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <router-view></router-view>
+    <tab1>
+      <tab2 path="/home" col="red">
+      <img slot="im" src="./assets/img/1.png">
+      <img slot="imActive" src="./assets/img/2.gif">
+      <div slot="text">首页</div>
+    </tab2>
+      <tab2 path="/cate" col="red">
+        <img slot="im" src="./assets/img/1.png">
+        <img slot="imActive" src="./assets/img/2.gif">
+        <div slot="text">分类</div>
+      </tab2>
+      <tab2 path="/car" col="red">
+        <img slot="im" src="./assets/img/1.png">
+        <img slot="imActive" src="./assets/img/2.gif">
+        <div slot="text">购物车</div>
+      </tab2>
+      <tab2 path="/profile" col="red">
+        <img slot="im" src="./assets/img/1.png">
+        <img slot="imActive" src="./assets/img/2.gif">
+        <div slot="text">我的</div>
+      </tab2>
+    </tab1>
   </div>
 </template>
 
 <script>
+  import tab1 from "./components/comment/tabbar/tab1";
+  import tab2 from "./components/comment/tabbar/tab2";
 export default {
-  name: 'App'
+  name: 'App',
+  components:{
+    tab1,tab2
+  }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import "assets/css/base.css";
 </style>

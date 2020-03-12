@@ -1,15 +1,57 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+
+const home=()=>import("../views/home/home")
+const pop=()=>import("../views/home/childrencomponents/childgroup1/pop")
+const song=()=>import("../views/home/childrencomponents/childgroup1/song")
+const important=()=>import("../views/home/childrencomponents/childgroup1/important")
+const cate=()=>import("../views/cate/cate")
+const car=()=>import("../views/car/car")
+const profile=()=>import("../views/profile/profile")
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      path:"",
+      redirect:"/home"
+    },
+    {
+      path:"/home",
+      component:home,
+      children:[
+        {
+          path:"",
+          redirect:"pop"
+        },
+        {
+          path:"pop",
+          component:pop,
+        },
+        {
+          path:"song",
+          component:song
+        },
+        {
+          path:"important",
+          component:important
+
+        },
+      ]
+    },
+    {
+      path:"/cate",
+      component:cate
+    },
+    {
+      path:"/car",
+      component:car
+    },
+    {
+      path:"/profile",
+      component:profile
     }
-  ]
+  ],
+  mode:"history"
 })
