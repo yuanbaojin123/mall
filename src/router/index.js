@@ -8,6 +8,7 @@ const important=()=>import("../views/home/childrencomponents/childgroup1/importa
 const cate=()=>import("../views/cate/cate")
 const car=()=>import("../views/car/car")
 const profile=()=>import("../views/profile/profile")
+const detail=()=>import("../views/detail/detail")
 
 Vue.use(Router)
 
@@ -49,8 +50,12 @@ export default new Router({
       component:car
     },
     {
-      path:"/profile",
+      path:"/profile/:id",
       component:profile
+    },
+    {
+      path:"/home/:type/:id",
+      component:detail,
     }
   ],
   mode:"history"

@@ -3,12 +3,15 @@
       <direction class="home-direction" color="pink">
         <div slot="center">购物街</div>
       </direction>
-      <scroll ref="scroll" class="scr" :probe-type="3" :pull-up-load="true" @move="move" @pullingUp="pullingUp">
-        <swipe width="100%" height="150px" color="blue" :img-list="list1" :link-list="list2" ></swipe>
+<!--      <div style="width: 100%;height: 100px;background-color: #42b983"></div>-->
+<!--      <div ref="div1" style="width: 100%;height: 100px;background-color: red"></div>-->
+      <tab-control @together="together" @saveY="saveY"  v-show="isDisplay" class="control" :titles="list4" ref="con1"></tab-control>
+      <scroll ref="scroll" class="scr" :probe-type="3" :pull-up-load="true" @move="move" @pullingUp="pullingUp">{{init}}
+        <swipe ref="swipe" width="100%" height="150px" color="blue" :img-list="list1" :link-list="list2" ></swipe>
         <commands :img-list="list1" :link-list="list2" :text-list="list3"></commands>
         <future :img="list1[0]" link="list2[0]"></future>
-        <tab-control class="control" :titles="list4"></tab-control>
-        <router-view :goodsList="list5"></router-view>
+        <tab-control @together="together" @saveY="saveY"  class="control" :titles="list4" ref="con2" v-show="!isDisplay"></tab-control>
+        <router-view @scrollinit="scrollinit" :goodsList1="list5" :goodsList2="list6" :goodsList3="list7"></router-view>
       </scroll>
       <backtop @imgClick="imgClick" v-show="isShow"></backtop>
     </div>
@@ -55,27 +58,107 @@
             {"img1":"../../../../static/img/1.png","description":"页面上两个样式属性都会加载到，但显示的是后者的属性值对应的样式","price":49.00,"img2":"../../../../static/img/1.png","count":1254},
             {"img1":"../../../../static/img/1.png","description":"页面上两个样式属性都会加载到，但显示的是后者的属性值对应的样式","price":49.00,"img2":"../../../../static/img/1.png","count":1254},
           ],
+          list6:[
+            {"img1":"../../../../static/img/1.png","description":"页面上两个样式属性都会加载到，但显示的是后者的属性值对应的样式","price":49.00,"img2":"../../../../static/img/1.png","count":1254},
+            {"img1":"../../../../static/img/1.png","description":"页面上两个样式属性都会加载到，但显示的是后者的属性值对应的样式","price":49.00,"img2":"../../../../static/img/1.png","count":1254},
+            {"img1":"../../../../static/img/1.png","description":"页面上两个样式属性都会加载到，但显示的是后者的属性值对应的样式","price":49.00,"img2":"../../../../static/img/1.png","count":1254},
+            {"img1":"../../../../static/img/1.png","description":"页面上两个样式属性都会加载到，但显示的是后者的属性值对应的样式","price":49.00,"img2":"../../../../static/img/1.png","count":1254},
+            {"img1":"../../../../static/img/1.png","description":"页面上两个样式属性都会加载到，但显示的是后者的属性值对应的样式","price":49.00,"img2":"../../../../static/img/1.png","count":1254},
+            {"img1":"../../../../static/img/1.png","description":"页面上两个样式属性都会加载到，但显示的是后者的属性值对应的样式","price":49.00,"img2":"../../../../static/img/1.png","count":1254},
+            {"img1":"../../../../static/img/1.png","description":"页面上两个样式属性都会加载到，但显示的是后者的属性值对应的样式","price":49.00,"img2":"../../../../static/img/1.png","count":1254},
+            {"img1":"../../../../static/img/1.png","description":"页面上两个样式属性都会加载到，但显示的是后者的属性值对应的样式","price":49.00,"img2":"../../../../static/img/1.png","count":1254},
+            {"img1":"../../../../static/img/1.png","description":"页面上两个样式属性都会加载到，但显示的是后者的属性值对应的样式","price":49.00,"img2":"../../../../static/img/1.png","count":1254},
+            {"img1":"../../../../static/img/1.png","description":"页面上两个样式属性都会加载到，但显示的是后者的属性值对应的样式","price":49.00,"img2":"../../../../static/img/1.png","count":1254},
+            {"img1":"../../../../static/img/1.png","description":"页面上两个样式属性都会加载到，但显示的是后者的属性值对应的样式","price":49.00,"img2":"../../../../static/img/1.png","count":1254},
+            {"img1":"../../../../static/img/1.png","description":"页面上两个样式属性都会加载到，但显示的是后者的属性值对应的样式","price":49.00,"img2":"../../../../static/img/1.png","count":1254},
+          ],
+          list7:[
+            {"img1":"../../../../static/img/1.png","description":"页面上两个样式属性都会加载到，但显示的是后者的属性值对应的样式","price":49.00,"img2":"../../../../static/img/1.png","count":1254},
+            {"img1":"../../../../static/img/1.png","description":"页面上两个样式属性都会加载到，但显示的是后者的属性值对应的样式","price":49.00,"img2":"../../../../static/img/1.png","count":1254},
+            {"img1":"../../../../static/img/1.png","description":"页面上两个样式属性都会加载到，但显示的是后者的属性值对应的样式","price":49.00,"img2":"../../../../static/img/1.png","count":1254},
+            {"img1":"../../../../static/img/1.png","description":"页面上两个样式属性都会加载到，但显示的是后者的属性值对应的样式","price":49.00,"img2":"../../../../static/img/1.png","count":1254},
+            {"img1":"../../../../static/img/1.png","description":"页面上两个样式属性都会加载到，但显示的是后者的属性值对应的样式","price":49.00,"img2":"../../../../static/img/1.png","count":1254},
+            {"img1":"../../../../static/img/1.png","description":"页面上两个样式属性都会加载到，但显示的是后者的属性值对应的样式","price":49.00,"img2":"../../../../static/img/1.png","count":1254},
+          ],
           isShow:false,
+          offsetTop:0,
+          isDisplay:false,
         }
       },
       mounted() {
-
+        this.offsetTop=this.$refs.con2.$el.offsetTop-44
       },
-      methods:{
-        imgClick(){
-          this.$refs.scroll.backtop();
-        },
-        move(position){
-          if(position.y*-1>=1000){
-            this.isShow=true
-          }else{
-            this.isShow=false
+      computed:{
+        init(){
+          if(this.$store.state.isrefersh==true){
+            if (this.timer){
+              clearTimeout(this.timer)
+            }
+            this.timer=setTimeout(()=>{
+              this.$refs.scroll.refresh();
+            },100)
+            this.$store.commit("check1")
           }
         },
-        pullingUp(){
-          console.log(123);
+      },
+      methods: {
+        imgClick() {
+          this.$refs.scroll.backtop();
+        },
+        move(position) {
+          // console.log(this.$refs.swipe.$el.offsetTop);
+          if (position.y * -1 >= 1000) {
+            this.isShow = true
+          } else {
+            this.isShow = false
+          }
+          if ((-position.y) > this.offsetTop) {
+            this.isDisplay = true
+          } else {
+            this.isDisplay = false
+          }
+        },
+        pullingUp() {
+          let list6 = this.list5;
+          let length = 8
+          switch (this.$store.state.currentIndex) {
+            case 0: {
+              for (let i = 0; i < length; i++) {
+                this.list5.push(list6[i])
+              }
+              ;
+            }
+              break;
+            case 1: {
+              for (let i = 0; i < length; i++) {
+                this.list6.push(list6[i])
+              }
+            }
+              break;
+            case 2: {
+              for (let i = 0; i < length; i++) {
+                this.list7.push(list6[i])
+              }
+            }
+              break;
+          }
           this.$refs.scroll.finishPullUp();
         },
+        saveY(beforeIndex) {
+          this.$store.commit("save", {"y":this.$refs.scroll.currentY,"beforeIndex":beforeIndex})
+        },
+        scrollinit(y){
+          this.$refs.scroll.scroll.scrollTo(0,y)
+        },
+        together(beforeIndex,currentIndex){
+
+          this.$refs.con1.beforeIndex=this.$refs.con1.beforeIndex=beforeIndex
+          this.$refs.con1.currentIndex=this.$refs.con2.currentIndex=currentIndex
+        }
+      },
+      beforeRouteLeave(to,from,next){
+        this.$refs.swipe.clearTimer();
+        next();
       }
     }
 </script>
@@ -91,10 +174,8 @@ padding-top: 44px;
     z-index: 10;
   }
   .control{
-    padding-top: 10px;
-    padding-bottom: 8px;
-    position: sticky;
-    top: 44px;
+    padding-top: 6px;
+    padding-bottom: 2px;
     background-color: white;
   }
   .scr{

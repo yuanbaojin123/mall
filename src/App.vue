@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <keep-alive exclude="detail">
+      <router-view></router-view>
+    </keep-alive>
     <tab1>
       <tab2 path="/home" col="red">
       <img slot="im" src="./assets/img/1.png">

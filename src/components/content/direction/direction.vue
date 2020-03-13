@@ -50,4 +50,7 @@ flex-grow: 1;
 #direction .item3{
 width: 60px;
 }
+#direction div{
+  overflow: hidden;
+}
 </style>

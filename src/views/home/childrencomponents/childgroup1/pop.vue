@@ -1,6 +1,6 @@
 <template>
     <div>
-      <goods :goods-list="goodsList"></goods>
+      <goods :goods-list="goodsList1"></goods>
     </div>
 </template>
 
@@ -11,12 +11,29 @@
       components:{
           goods,
       },
+      data(){
+          return {
+
+          }
+      },
       props:{
-          goodsList: {
+          goodsList1: {
             type:Array,
             default:[]
           }
-      }
+      },
+      mounted() {
+          if(this.$store.state.start){
+            this.$emit("scrollinit",this.$store.state.y1)
+          }
+          else{
+            this.$store.commit("init")
+          }
+
+
+      },
+      activated() {
+      },
 
     }
 </script>

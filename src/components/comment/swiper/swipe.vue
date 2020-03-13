@@ -120,8 +120,10 @@
             return {"background-color":this.color}
           }
         },
-      }
-
+        clearTimer(){
+          clearInterval(this.timer)
+        }
+      },
     }
 </script>
 

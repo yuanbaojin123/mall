@@ -47,7 +47,7 @@
       },
       methods:{
           tab2Click(){
-            if (this.$route.path==this.path){
+            if (this.$route.path.indexOf(this.path)!=-1){
               return
             }
             this.$router.replace(this.path)

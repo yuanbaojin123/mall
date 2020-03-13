@@ -13,6 +13,8 @@
       data(){
         return{
           scroll:null,
+          timer:null,
+          currentY:0
         }
       },
       props:{
@@ -31,12 +33,18 @@
           probeType:this.probeType,
           pullUpLoad:this.pullUpLoad
         })
-        this.scroll.on("scroll",(position)=>{
-          this.$emit("move",position)
-        });
-        this.scroll.on("pullingUp",()=>{
-          this.$emit("pullingUp")
-        })
+        if(this.probeType===2||this.probeType===3){
+          this.scroll.on("scroll",(position)=>{
+            this.currentY=parseInt(position.y)
+            this.$emit("move",position)
+          });
+        }
+        if(this.pullUpLoad){
+          this.scroll.on("pullingUp",()=>{
+            this.$emit("pullingUp")
+          })
+        }
+
       },
       methods:{
         backtop(){
@@ -44,6 +52,9 @@
         },
         finishPullUp(){
           this.scroll.finishPullUp();
+        },
+        refresh(){
+            this.scroll.refresh();
         }
       }
     }

@@ -1,7 +1,7 @@
 <template>
     <div id="goods">
-      <div class="goodsItem" v-for="item in goodsList">
-        <img class="img1" :src="item.img1">
+      <div class="goodsItem" v-for="item in goodsList" @click="click">
+        <img class="img1" :src="item.img1" @load="imgLoad">
         <div>
           <span class="span1">{{item.description}}</span>
           <div>
@@ -21,6 +21,15 @@
         goodsList:{
           type:Array,
           default:[]
+        }
+      },
+      methods:{
+        imgLoad(){
+          this.$store.commit("check2")
+        },
+        click(){
+          let path=this.$route.path
+          this.$router.push(path+"/123")
         }
       }
     }

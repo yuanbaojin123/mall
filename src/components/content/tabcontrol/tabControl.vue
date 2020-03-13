@@ -1,6 +1,6 @@
 <template>
     <div id="tabControl">
-      <div class="tabControlItem" v-for="(item,index) in titles" @click="click(index)"><span :style="init(index)">{{item}}</span></div>
+      <div ref="control" class="tabControlItem" v-for="(item,index) in titles" @click="click(index)"><span :style="init(index)">{{item}}</span></div>
     </div>
 </template>
 
@@ -9,31 +9,42 @@
       name: "tabControl",
       data(){
         return{
-          currentIndex:1,
+          beforeIndex:0,
+          currentIndex:0,
         }
       },
       props:{
           titles:{
             type:Array,
             default:[]
-          }
+          },
       },
       methods:{
           init(index){
-            if(index+1==this.currentIndex){
+            if(index==this.$store.state.currentIndex){
               return {"border-bottom": "solid 2px red"}
             }
           },
         click(index){
-            this.currentIndex=index+1
-          if(this.currentIndex==1){
-            this.$router.replace("/home/pop")
+          this.beforeIndex=this.currentIndex;
+          this.currentIndex=index;
+          this.$emit("together",this.beforeIndex,this.currentIndex)
+            this.$store.commit("click",index)
+          this.$emit("saveY",this.beforeIndex)
+          if(this.$store.state.currentIndex==0){
+            if(this.$route.path!=="/home/pop"){
+              this.$router.replace("/home/pop")
+            }
           }
-          if(this.currentIndex==2){
-            this.$router.replace("/home/song")
+          if(this.$store.state.currentIndex==1){
+            if(this.$route.path!=="/home/song"){
+              this.$router.replace("/home/song")
+            }
           }
-          if(this.currentIndex==3){
-            this.$router.replace("/home/important")
+          if(this.$store.state.currentIndex==2){
+            if(this.$route.path!=="/home/important"){
+              this.$router.replace("/home/important")
+            }
           }
 
         }
@@ -54,6 +65,6 @@
 /*  background-color: #42b983;*/
 /*}*/
 #tabControl .tabControlItem span{
-  padding: 4px;
+  padding: 3px;
 }
 </style>
