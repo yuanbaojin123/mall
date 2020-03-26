@@ -104,11 +104,16 @@
       mounted() {
         this.timer=this.setTime()
       },
+      activated() {
+        this.timer=this.setTime()
+      },
       methods:{
         setTime(){
           const timer=setInterval(()=>{
-            this.$refs.item.style.transitionDuration="1s"
-            this.left-=this.realWidth
+            if(typeof this.$refs.item!=="undefined"){
+              this.$refs.item.style.transitionDuration="1s"
+              this.left-=this.realWidth
+            }
             setTimeout(()=>{
               this.currentIndex++
             },1000)

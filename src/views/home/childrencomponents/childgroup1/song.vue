@@ -1,6 +1,6 @@
 <template>
     <div>
-      <goods :goods-list="goodsList2"></goods>
+      <goods @goodsClick="goodsClick" :goods-list="goodsList2"></goods>
     </div>
 </template>
 
@@ -19,6 +19,11 @@
       },
       mounted() {
         this.$emit("scrollinit",this.$store.state.y2)
+      },
+      methods:{
+        goodsClick(item){
+          this.$emit("goodsClick",item)
+        }
       },
       activated() {
 

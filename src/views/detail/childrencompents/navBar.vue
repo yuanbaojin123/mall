@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="right">
-        <div>加入购物车</div>
+        <div @click="click">加入购物车</div>
         <div>购买</div>
       </div>
     </div>
@@ -28,6 +28,11 @@
       name: "navBar",
       components:{
         tab1,tab2
+      },
+      methods:{
+        click(){
+          this.$emit("addToCar")
+        }
       }
     }
 </script>

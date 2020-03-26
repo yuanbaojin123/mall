@@ -1,7 +1,7 @@
 <template>
 <div id="cate">
   <div>
-    <button @click="click">点击</button>
+    <div @click="click">点击</div>
     <ul>
       <li>分类列表信息1</li>
       <li>分类列表信息2</li>
@@ -221,7 +221,7 @@
       mounted() {
           const bs=new BScroll(document.getElementById("cate"),{
             probeType:3,
-            click:true,
+            click:false,
             pullUpLoad:true
 
           })

@@ -1,6 +1,6 @@
 <template>
     <div>
-      <goods :goods-list="goodsList1"></goods>
+      <goods @goodsClick="goodsClick" :goods-list="goodsList1"></goods>
     </div>
 </template>
 
@@ -29,9 +29,12 @@
           else{
             this.$store.commit("init")
           }
-
-
       },
+      methods:{
+        goodsClick(item){
+          this.$emit("goodsClick",item)
+       }
+     },
       activated() {
       },
 

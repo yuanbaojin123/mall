@@ -2,7 +2,7 @@
   <div>
     <direction class="direct">
       <img slot="left" src="../../../assets/img/2.gif" @click="click1">
-      <div slot="center"><span  v-for="(item,index) in titles" :style="init(index)" @click="click2(index)">{{item}}</span></div>
+      <div slot="center"><span v-for="(item,index) in titles" :style="init(index)" @click="click2(index)">{{item}}</span></div>
     </direction>
   </div>
 
@@ -17,7 +17,7 @@
       },
       data(){
         return{
-          titles:["商品","参数","评论","推荐"],
+          titles:["商品","评论","参数","推荐"],
           currentIndex:0,
         }
       },
@@ -30,10 +30,30 @@
         click1(){
           this.$router.back()
         },
-        click2(index){
-          this.currentIndex=index
+        click2(index) {
+          if (index === this.currentIndex) return
+          else {
+            this.currentIndex = index
+            switch (index) {
+              case 0: {
+                this.$emit("one")
+              }
+                break;
+              case 1: {
+                this.$emit("two")
+              }
+                break;
+              case 2: {
+                this.$emit("three")
+              }
+                break;
+              case 3: {
+                this.$emit("four")
+              }
+                break;
+            }
+          }
         }
-
       }
     }
 </script>
@@ -49,5 +69,6 @@
   }
   .direct div span{
     flex-grow: 1;
+
   }
 </style>
